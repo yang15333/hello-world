@@ -1,23 +1,28 @@
 #include <stdio.h>
-#define N 32
+#include <string.h>
 
 int main(int argc, const char *argv[])
 {
-	char str1[N] = {0};
-	char str2[N] = {"helloworld"};
-	int i = 0;
-	
-	printf("请输入字符串1：\n");
-	gets(str1);
+	char str[32] = {0};
+	char *head = 0;
+	char *tail = 0;
+	char tmp = 0;
 
-	for (i = 0; str1[i] != 0; i++)
+	printf("请输入字符串：\n");
+	gets(str);
+	head = str;
+	tail = head + strlen(str) - 1;
+
+	while (head < tail)
 	{
-		str2[i] = str1[i];
+		tmp = *head;
+		*head = *tail;
+		*tail = tmp;
+		head++;
+		tail--;
 	}
-	str2[i] = 0;
-
-	printf("字符串1为：\n%s\n", str1);
-	printf("字符串2为：\n%s\n", str2);
+	
+	puts(str);
 
 	return 0;
 }

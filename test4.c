@@ -1,57 +1,40 @@
 #include <stdio.h>
-
-#define N 5
+#include <string.h>
 
 int main(int argc, const char *argv[])
 {
-	int a[N][N];
-	int i;
-	int j;
-	int min;
-	int max;
-	
-	//生成随机数组
-	srand(time(NULL));
-	for (i = 0; i < N; i++)
-	{
-		for (j = 0; j < N; j++)
-		{
-			a[i][j] = rand() % 100;
-		}
-	}
-	
-	//按行打印数组
-	for (i = 0; i < N; i++)
-	{
-		for (j = 0; j < N;j++)
-		{
-			printf("%-3d ", a[i][j]);
-		}
-		printf("\n\n");
-	}
-	
-	//遍历主对角线元素，找出最大值
-	max = a[0][0];
-	for (i = 0; i < N; i++)
-	{
-		if (a[i][i] > max)
-		{
-			max = a[i][i];
-		}
-	} 
-	
-	//遍历辅对角线元素，找出最小值
-	min = a[0][N-1];
-	for (i = 0; i < N; i++)
-	{
-		if (a[i][N-1-i] < min)
-		{
-			min = a[i][N-1-i];
-		}
-	}
-	
-	printf("主对角线最大值：%d\n", max);
-	printf("辅对角线最小值：%d\n", min);
+	char str[5][32] = {0};
+	char tmp[32] = {0};
+	int i = 0;
+	int j = 0;
 
+	printf("请输入五个字符串：\n");
+	
+	//降维处理，将二维字符串数组当做一维数组操作
+	for (i = 0; i < 5; i++)
+	{
+		gets(str[i]);
+	}
+	
+	//冒泡排序
+	for (j = 4; j > 0; j--)
+	{
+		for (i = 0; i < j; i++)
+		{
+			if (strcmp(str[i], str[i+1]) == 1)
+			{
+				strcpy(tmp, str[i]);
+				strcpy(str[i], str[i+1]);
+				strcpy(str[i+1], tmp);
+			}
+		}
+	}
+ 	
+	printf("排序后的字符串为：\n");
+	for (i = 0; i < 5; i++)
+	{
+		printf("%s\n", str[i]);
+	}
+	
 	return 0;
 }

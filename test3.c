@@ -2,30 +2,23 @@
 
 int main(int argc, const char *argv[])
 {
-	int a = 0;
-	int n = 0;
+	char str[32] = {0};
+	char *p = str;
 	int i = 0;
-	int mul = 0;
-	int sum = 0;
+	
+	printf("请输入字符串：\n");
+	gets(str);
 
-	printf("请输入a(1-9整数)：");
-	scanf("%d", &a);
-	printf("请输入n：");
-	scanf("%d", &n);
-
-	for (i = 0; i < n; i++)
+	while (*p)
 	{
-		mul = mul * 10 + a;
-		sum += mul;
-		printf("%d", mul);
-		if (i < n - 1)
+		if (*p != ' ' && (*(p+1) == ' ' || *(p+1) == 0))
 		{
-			printf("+");
+			i++;
 		}
-		else
-		{
-			printf("=%d\n", sum);
-		}
+		p++;
 	}
+	
+	printf("有%d个单词\n", i);
+
 	return 0;
 }
